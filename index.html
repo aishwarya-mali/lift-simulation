@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <title>RDS Lift Simulation</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="lift-simulation">
         <h1 class="header">Lift Simulator</h1>
@@ -15,7 +17,7 @@
             <div class="card-box">
                 <form>
                     <div class="floors">
-                        <label for="floors">Number of floors</label> 
+                        <label for="floors">Number of floors</label>
                         <input type="number" id="floors" name="floors">
                     </div>
                     <div class="lifts">
@@ -23,10 +25,30 @@
                         <input type="number" id="lifts" name="lifts">
                     </div>
                 </form>
-                <button class="btn-generate" onclick="(e)=>generateLifts(e)">Generate</button>
+                <button class="btn btn-generate">Generate</button>
             </div>
         </div>
+
+        <div class="floor">
+            <div class="lift-buttons">
+                <button class="btn">
+                    &uarr;
+                </button>
+                <button class="btn">
+                    &darr;
+                </button>
+            </div>
+
+            <div class="lifts">
+                <div class="lift">
+                    <div class="lift-left"></div>
+                    <div class="lift-right"></div>
+                </div>
+            </div>
+        </div>
+        
     </div>
     <script src="/script.js"></script>
 </body>
+
 </html>
