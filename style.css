@@ -61,7 +61,7 @@
     display: inline-block;
 }
 
-#floors, #lifts{
+#floorsInput, #liftsInput{
     display: block;
     width: 100%;
     padding: 5px;
@@ -88,15 +88,22 @@
 .floor{
     display: flex;
     align-items: center;
-    height: 180px;
+    height: 120px;
     margin-top: 80px;
     padding: 0 30px 10px;
     border-bottom: 2px solid lightgray;
     border-radius: 5px;
 }
 
+.lastFloor{
+    margin-bottom: 80px;
+}
+
 .lifts{
     height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .lift-buttons{
