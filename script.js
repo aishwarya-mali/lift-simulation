@@ -6,7 +6,7 @@ const floorsInput = document.getElementById('floorsInput')
 const liftsInput = document.getElementById('liftsInput')
 
 btnGenerate.addEventListener('click', function(e){
-   console.log(typeof +floorsInput.value, typeof +liftsInput.value)
+   console.log(`Floors ${+floorsInput.value} Lifts ${+liftsInput.value}`)
    handleFloors()
 })
 
@@ -14,12 +14,12 @@ function handleFloors(){
     for( let i=+floorsInput.value - 1; i>=0; i--){
         const html = 
             `
-            <div class="floor ${i === +floorsInput.value - 1 ? 'lastFloor' : ''}">
+            <div class="floor ${i === +floorsInput.value - 1 ? 'lastFloor' : ''}" data-floor=${i + 1}>
                 <div class="lift-buttons">
-                    <button class="btn">
+                    <button class="btn btn-up" id="btn-up" data-floor=${i + 1}>
                         &uarr;
                     </button>
-                    <button class="btn">
+                    <button class="btn btn-down" id="btn-down" data-floor=${i + 1}>
                         &darr;
                     </button>
                 </div>
@@ -40,7 +40,7 @@ function handleLifts(){
     // console.log(floorContainer)
     let liftsHtml = ''
     for( let i = 0 ; i <= +liftsInput.value - 1; i++){
-        console.log(i, +liftsInput.value)
+        // console.log(i, +liftsInput.value)
         liftsHtml += `
             <div class="lift">
                 <div class="lift-left"></div>
@@ -50,3 +50,15 @@ function handleLifts(){
     }
     return liftsHtml
 }
+
+document.addEventListener('click', function (e) {
+    if (e.target && e.target.id == 'btn-up') {
+       console.log(`btn-up clicked on floor ${e.target.dataset.floor}`)
+       const { height } = document.querySelector(`[data-floor='${e.target.dataset.floor}']`).getBoundingClientRect()
+       console.log(((height * +floorsInput.value) * e.target.dataset.floor) + 80)
+       document.querySelector('.lift').style.transform = `translateY(-${(((height * +floorsInput.value) * e.target.dataset.floor) + 80) + 80}px)`
+    }
+    if (e.target && e.target.id == 'btn-down') {
+        console.log(`btn-down clicked on floor ${e.target.dataset.floor}`)
+     }
+});
