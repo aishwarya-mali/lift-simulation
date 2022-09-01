@@ -10,25 +10,27 @@ btnGenerate.addEventListener('click', function (e) {
 })
 
 function handleFloors() {
-    for (let i = +floorsInput.value - 1; i >= 0; i--) {
+    const floorValue = +floorsInput.value
+    for (let i = 0 ; i <= floorValue - 1; i++) {
         const html =
             `
-            <div class="floor ${i === +floorsInput.value - 1 ? 'lastFloor' : ''}" data-floor=${i + 1}>
+            <div class="floor ${i === 0 ? 'lastFloor' : ''}" data-floor=${i}>
                 <div class="lift-buttons">
-                    <button class="btn btn-up" id="btn-up" data-floor=${i + 1}>
+                    <button class="btn btn-up" id="btn-up" data-floor=${i}>
                         &uarr;
                     </button>
-                    <button class="btn btn-down" id="btn-down" data-floor=${i + 1}>
+                    <button class="btn btn-down" id="btn-down" data-floor=${i}>
                         &darr;
                     </button>
                 </div>
-                ${i === +floorsInput.value - 1 ? `
+                ${i === 0 ? `
                 <div class="lifts">
                     ${handleLifts()}
                 </div>
                 ` : ``}
             </div>
             `;
+            
         simulationContainer.insertAdjacentHTML('afterend', html)
     }
 
