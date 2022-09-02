@@ -11,7 +11,7 @@ btnGenerate.addEventListener('click', function (e) {
 
 function handleFloors() {
     const floorValue = +floorsInput.value
-    for (let i = 0 ; i <= floorValue - 1; i++) {
+    for (let i = 0; i <= floorValue - 1; i++) {
         const html =
             `
             <div class="floor ${i === 0 ? 'lastFloor' : ''}" data-floor=${i}>
@@ -30,7 +30,7 @@ function handleFloors() {
                 ` : ``}
             </div>
             `;
-            
+
         simulationContainer.insertAdjacentHTML('afterend', html)
     }
 
@@ -40,7 +40,7 @@ function handleLifts() {
     let liftsHtml = ''
     for (let i = 0; i <= +liftsInput.value - 1; i++) {
         liftsHtml += `
-            <div class="lift" data-lift=${i + 1}>
+            <div class="lift" data-lift=${i + 1} data-floor=${0}>
                 <div class="lift-left"></div>
                 <div class="lift-right"></div>
             </div>
@@ -50,10 +50,60 @@ function handleLifts() {
 }
 
 document.addEventListener('click', function (e) {
+    const floorClicked = +e.target.dataset.floor
     if (e.target && e.target.id === 'btn-up') {
-       
+        const lifts = Array.from(document.querySelectorAll('.lift'))
+        for (let i = 0; i < lifts.length; i++) {
+            const lift = lifts[i]
+            const currentFloor = +lift.dataset.floor
+            const { height } = document.querySelector(`[data-floor='${floorClicked}']`).getBoundingClientRect()
+            if (currentFloor < floorClicked) {
+                lift.style.transform = `translateY(-${(height + 80) * floorClicked}px)`
+                lift.style.transition = `all 3s ease-in`
+                lift.dataset.floor = floorClicked
+                lift.addEventListener('transitionend', function () {
+                    liftDoorAnimation(lift);
+                })
+                break;
+            }
+        }
     }
     if (e.target && e.target.id === 'btn-down') {
-       
+        const lifts = Array.from(document.querySelectorAll('.lift'))
+        for (let i = 0; i < lifts.length; i++) {
+            const lift = lifts[i]
+            const currentFloor = +lift.dataset.floor
+            const { height } = document.querySelector(`[data-floor='${floorClicked}']`).getBoundingClientRect()
+            if (currentFloor > floorClicked) {
+                lift.style.transform = `translateY(-${(height + 80) * floorClicked}px)`
+                lift.style.transition = `all 3s ease-in`
+                lift.dataset.floor = floorClicked
+                lift.addEventListener('transitionend', function () {
+                    liftDoorAnimation(lift);
+                })
+            }
+            break;
+        }
     }
 });
+
+function liftDoorAnimation(lift) {
+    let [leftDoor, rightDoor] = lift.children;
+    leftDoor.classList.add('openLeftDoor');
+    rightDoor.classList.add('openRightDoor');
+
+    leftDoor.addEventListener('transitionend', function () {
+        leftDoor.classList.add('closeLeftDoor');
+    });
+
+    rightDoor.addEventListener('transitionend', function () {
+        rightDoor.classList.add('closeRightDoor');
+    });
+
+    setTimeout(() => {
+        leftDoor.classList.remove('openLeftDoor');
+        rightDoor.classList.remove('openRightDoor');
+        leftDoor.classList.remove('closeLeftDoor');
+        rightDoor.classList.remove('closeRightDoor');
+    }, 5000);
+}
