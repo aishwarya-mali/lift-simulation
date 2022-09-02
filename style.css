@@ -119,18 +119,46 @@
     align-items: center;
     border-radius: 5px;
     overflow: hidden;
+    position: relative;
 }
 
 .lift-left, .lift-right{
     height: 100%;
-    width: 50%;
+    width: 49%;
     background: var(--grey-bg);
+    position: absolute;
 }
 
 .lift-left{
     margin-right: 1px;
+    left: 0;
 }
 
 .lift-right{
     margin-left: 1px;
+    right: 0;
+}
+
+.openLeftDoor{
+    position: absolute;
+    left: -50%;
+    transition:all 3s ease-in;
+}
+
+.openRightDoor{
+    position: absolute;
+    right: -50%;
+    transition:all 3s ease-in;
+}
+
+.closeLeftDoor{
+    position: absolute;
+    left: 0;
+    transition:all 3s ease-in;
+}
+
+.closeRightDoor{
+    position: absolute;
+    right: 0;
+    transition:all 3s ease-in;
 }

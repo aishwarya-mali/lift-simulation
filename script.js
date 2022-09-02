@@ -59,10 +59,10 @@ document.addEventListener('click', function (e) {
             const { height } = document.querySelector(`[data-floor='${floorClicked}']`).getBoundingClientRect()
             if (currentFloor < floorClicked) {
                 lift.style.transform = `translateY(-${(height + 80) * floorClicked}px)`
-                lift.style.transition = `all 3s ease-in`
+                lift.style.transition = `all ${floorClicked}s ease-in`
                 lift.dataset.floor = floorClicked
                 lift.addEventListener('transitionend', function () {
-                    liftDoorAnimation(lift);
+                    liftDoorAnimation(lift, floorClicked);
                 })
                 break;
             }
@@ -79,7 +79,7 @@ document.addEventListener('click', function (e) {
                 lift.style.transition = `all 3s ease-in`
                 lift.dataset.floor = floorClicked
                 lift.addEventListener('transitionend', function () {
-                    liftDoorAnimation(lift);
+                    liftDoorAnimation(lift, floorClicked);
                 })
             }
             break;
@@ -87,7 +87,7 @@ document.addEventListener('click', function (e) {
     }
 });
 
-function liftDoorAnimation(lift) {
+function liftDoorAnimation(lift, floorClicked) {
     let [leftDoor, rightDoor] = lift.children;
     leftDoor.classList.add('openLeftDoor');
     rightDoor.classList.add('openRightDoor');
@@ -105,5 +105,5 @@ function liftDoorAnimation(lift) {
         rightDoor.classList.remove('openRightDoor');
         leftDoor.classList.remove('closeLeftDoor');
         rightDoor.classList.remove('closeRightDoor');
-    }, 5000);
+    }, 3000 * floorClicked);
 }
