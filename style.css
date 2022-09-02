@@ -30,6 +30,10 @@
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
+.btn-down{
+    margin-left: 5px;
+}
+
 .header{
     background-color: var(--grey-bg);
     color: var(--white);
@@ -52,6 +56,10 @@
     max-width: 300px;
     width: 100%;
     padding: 10px;
+}
+
+.liftsInput-container{
+    margin-top: 5px;
 }
 
 .floorsInput-container label, .liftsInput-container label{
@@ -161,4 +169,10 @@
     position: absolute;
     right: 0;
     transition:all 3s ease-in;
+}
+
+.errorFloor, .errorLift{
+    color: red;
+    font-size: 10px;
+    margin-top: 2px;
 }
