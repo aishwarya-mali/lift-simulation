@@ -94,23 +94,17 @@ document.addEventListener('click', function (e) {
 
 function liftDoorAnimation(lift, floorClicked) {
     let [leftDoor, rightDoor] = lift.children;
-    leftDoor.classList.add('openLeftDoor');
-    rightDoor.classList.add('openRightDoor');
+ 
+    leftDoor.classList.add('leftDoor');
+    rightDoor.classList.add('rightDoor');
 
-    leftDoor.addEventListener('transitionend', function () {
-        leftDoor.classList.add('closeLeftDoor');
+    leftDoor.addEventListener('animationend', function () {
+        leftDoor.classList.remove('leftDoor');
     });
 
-    rightDoor.addEventListener('transitionend', function () {
-        rightDoor.classList.add('closeRightDoor');
+    rightDoor.addEventListener('animationend', function () {
+        rightDoor.classList.remove('rightDoor');
     });
-
-    setTimeout(() => {
-        leftDoor.classList.remove('openLeftDoor');
-        rightDoor.classList.remove('openRightDoor');
-        leftDoor.classList.remove('closeLeftDoor');
-        rightDoor.classList.remove('closeRightDoor');
-    }, 3000 * floorClicked);
 }
 
 function liftsMovement(id, floorClicked) {
@@ -128,6 +122,12 @@ function liftsMovement(id, floorClicked) {
             lift.addEventListener('transitionend', function () {
                 liftDoorAnimation(lift, floorClicked);
             });
+            setTimeout(() => {
+                enableDisableButtons(false)
+            }, 3000 * floorClicked);
+        } else if(currentFloor === floorClicked){
+            enableDisableButtons(true)
+            liftDoorAnimation(lift, floorClicked);
             setTimeout(() => {
                 enableDisableButtons(false)
             }, 3000 * floorClicked);

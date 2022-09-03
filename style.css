@@ -147,28 +147,46 @@
     right: 0;
 }
 
-.openLeftDoor{
+.leftDoor, .rightDoor{
     position: absolute;
-    left: -50%;
-    transition:all 3s ease-in;
 }
 
-.openRightDoor{
-    position: absolute;
-    right: -50%;
-    transition:all 3s ease-in;
+.leftDoor {
+    animation-name: leftDoor;
+    animation-duration: 3s;
 }
 
-.closeLeftDoor{
-    position: absolute;
-    left: 0;
-    transition:all 3s ease-in;
+.rightDoor {
+    animation-name: rightDoor;
+    animation-duration: 3s;
 }
 
-.closeRightDoor{
-    position: absolute;
-    right: 0;
-    transition:all 3s ease-in;
+@keyframes leftDoor {
+    0% {
+        left: 0;
+    }
+
+    50% {
+        left: -50%;
+    }
+
+    100% {
+        left: 0;
+    }
+}
+
+@keyframes rightDoor {
+    0% {
+        right: 0;
+    }
+
+    50% {
+        right: -50%;
+    }
+
+    100% {
+        right: 0;
+    }
 }
 
 .errorFloor, .errorLift{
