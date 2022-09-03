@@ -4,7 +4,12 @@
 This project simulates behaviour of Lift
 
 ## Tech Stack
+
 HTML5, CSS3, JavaScript
+
+## Demo
+
+https://rds-lift-simulation-am.netlify.app/
 
 ## Run Locally
 
@@ -16,10 +21,6 @@ HTML5, CSS3, JavaScript
 
 1. Enter number of floors e.g. 3 and number of lifts e.g. 4
 2. Press on up or down arrows so lifts will start to move
-
-## Demo
-
-https://rds-lift-simulation-am.netlify.app/
 
 ## Screenshot
 
