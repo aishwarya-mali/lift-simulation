@@ -8,11 +8,9 @@ HTML5, CSS3, JavaScript
 
 ## Run Locally
 
-Clone the project
-
-Go to the project directory
-
-Double click or Drag index.html file to browser of your choice
+1. Clone the project
+2. Go to the project directory
+3. Double click or Drag index.html file to browser of your choice
 
 ## How to Use 
 
