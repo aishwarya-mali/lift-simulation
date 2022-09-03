@@ -125,14 +125,8 @@ function liftsMovement(id, floorClicked) {
             setTimeout(() => {
                 enableDisableButtons(false)
             }, 3000 * floorClicked);
-        } else if(currentFloor === floorClicked){
-            enableDisableButtons(true)
-            liftDoorAnimation(lift, floorClicked);
-            setTimeout(() => {
-                enableDisableButtons(false)
-            }, 3000 * floorClicked);
-        }
-        break;
+            break;
+        } 
     }
 }
 
