@@ -24,12 +24,12 @@ function handleValidations(){
     const floorValue = +floorsInput.value
     const liftValue = +liftsInput.value
 
-    if(!floorValue){
+    if(!floorValue || floorValue < 0){
         errorFloor.innerHTML = 'Please Enter floors'
         validationSuccessfull = false
     }
 
-    if(!liftValue){
+    if(!liftValue || liftValue < 0){
         errorLift.innerHTML = 'Please Enter Lifts to Travel'
         validationSuccessfull = false
     }
@@ -118,21 +118,21 @@ function liftsMovement(id, floorClicked) {
             lift.style.transform = `translateY(-${(height + 80) * floorClicked}px)`;
             lift.style.transition = `all ${floorClicked + 1}s ease-in`;
             lift.dataset.floor = floorClicked;
-            enableDisableButtons(true)
+            enableDisableButtons(floorClicked, true)
             lift.addEventListener('transitionend', function () {
                 liftDoorAnimation(lift, floorClicked);
             });
             setTimeout(() => {
-                enableDisableButtons(false)
+                enableDisableButtons(floorClicked, false)
             }, 3000 * floorClicked);
             break;
         } 
     }
 }
 
-function enableDisableButtons(value){
-    const buttons = document.querySelectorAll('.btn')
-    buttons.forEach(btn => {
-        btn.disabled = value
-    })
+function enableDisableButtons(floorClicked, value){
+    const liftBtns = document.querySelector(`[data-floor='${floorClicked}'] .lift-buttons`)
+    for(let i=0; i< liftBtns.children.length; i++){
+        liftBtns.children[i].disabled = value
+    }
 }
