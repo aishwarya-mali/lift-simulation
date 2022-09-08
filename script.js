@@ -92,7 +92,7 @@ document.addEventListener('click', function (e) {
 
 });
 
-function liftDoorAnimation(lift, floorClicked) {
+function liftDoorAnimation(lift) {
     let [leftDoor, rightDoor] = lift.children;
  
     leftDoor.classList.add('leftDoor');
@@ -120,7 +120,7 @@ function liftsMovement(id, floorClicked) {
             lift.dataset.floor = floorClicked;
             enableDisableButtons(floorClicked, true)
             lift.addEventListener('transitionend', function () {
-                liftDoorAnimation(lift, floorClicked);
+                liftDoorAnimation(lift);
             });
             setTimeout(() => {
                 enableDisableButtons(floorClicked, false)
